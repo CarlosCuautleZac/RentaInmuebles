@@ -1,0 +1,42 @@
+﻿@model IEnumerable<RentaInmuebles.Models.Propiedad>
+
+@{
+    ViewData["Title"] = "Propiedades";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="fw-300 centrar-texto">Casas en renta</h2>
+        <div class="contenedor-anuncios">
+            @foreach (var p in Model)
+            {
+                <div class="anuncio">
+                <img src="~/img/@(p.Id).jpg" alt="anuncio casa en el Lago">
+                <div class="contenido-anuncio">
+                    <h3>@p.Nombre</h3>
+                    <p>
+                        @(p.Descripcion.Substring(0,150))...</p>
+
+                    <p class="precio">@p.Precio.ToString("c")/mes</p>
+
+                    <ul class="iconos-caracs">
+                        <li>
+                            <img src="~/img/icono_wc.svg" alt="icono wc">
+                            <p>@p.CantBaños</p>
+                        </li>
+                        <li>
+                            <img src="~/img/icono_estacionamiento.svg" alt="icono estacionamiento">
+                            <p>@p.CantCochera</p>
+                        </li>
+                        <li>
+                            <img src="~/img/icono_dormitorio.svg" alt="icono habitaciones">
+                            <p>@p.CantCuartos</p>
+                        </li>
+                    </ul>
+
+                    <a href="~/@p.Nombre.Replace(" ","-")" class="boton boton-amarillo d-block">Ver propiedad</a>
+                </div>
+            </div>
+            }
+        </div>
+
+
