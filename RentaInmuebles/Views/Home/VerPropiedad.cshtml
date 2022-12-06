@@ -1,36 +1,81 @@
-﻿@model RentaInmuebles.Models.Propiedad
+﻿@model RentaInmuebles.Models.ViewModels.PropiedadViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     ViewData["Title"] = "VerPropiedad";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="fw-300 centrar-texto">@Model.Nombre</h1>
-    <img src="~/img/@(Model.Id).jpg" alt="imagen anuncio">
+<h1 class="fw-300 centrar-texto">@Model.Propiedad.Nombre</h1>
+<img src="~/img/@(Model.Propiedad.Id).jpg" alt="imagen anuncio">
 
 <div class="resumen-propiedad">
 
-    
 
-    <p class="precio">Precio @Model.Precio.ToString("c")</p>
+
+    <p class="precio">Precio @Model.Propiedad.Precio.ToString("c")</p>
     <ul class="iconos-caracs">
         <li>
             <img src="~/img/icono_wc.svg" alt="icono wc">
-            <p>@Model.CantBaños</p>
+            <p>@Model.Propiedad.CantBaños</p>
         </li>
         <li>
             <img src="~/img/icono_estacionamiento.svg" alt="icono estacionamiento">
-            <p>@Model.CantCochera</p>
+            <p>@Model.Propiedad.CantCochera</p>
         </li>
         <li>
             <img src="~/img/icono_dormitorio.svg" alt="icono habitaciones">
-            <p>@Model.CantCuartos</p>
+            <p>@Model.Propiedad.CantCuartos</p>
         </li>
     </ul>
 
 
 </div> <!--resumen propiedad-->
 
-<p>@Model.Direccion @Model.IdciudadNavigation.Nombre, @Model.IdciudadNavigation.Estado</p>
+<p>@Model.Propiedad.Direccion @Model.Propiedad.IdciudadNavigation.Nombre, @Model.Propiedad.IdciudadNavigation.Estado</p>
 
-<p>@Model.Descripcion</p>
+<p>@Model.Propiedad.Descripcion</p>
+
+
+<form class="contacto" action="~/Home/VerPropiedad" method="post">
+
+    <fieldset>
+        <legend>Quiero ser contactado</legend>
+
+        <input type="hidden"  asp-for="Propiedad.Id" />     
+        <input type="hidden"  asp-for="Propiedad.Direccion" />   
+        <input type="hidden"  asp-for="Propiedad.Nombre" />   
+        <input type="hidden"  asp-for="Propiedad.IdciudadNavigation.Id" />  
+        <input type="hidden"  asp-for="Propiedad.IdciudadNavigation.Nombre" />  
+        <input type="hidden"  asp-for="Propiedad.IdciudadNavigation.Estado" />  
+        <input type="hidden"  asp-for="Propiedad.IdciudadNavigation.Pais" />  
+
+        <label >Nombre:</label>
+        <input type="text"  asp-for="Contacto.Nombre" placeholder="Tu Nombre" required>
+
+        <label>E-Mail:</label>
+        <input type="email"  asp-for="Contacto.Email" placeholder="Tu Correo Electronico" required>
+
+        <label>Teléfono:</label>
+        <input type="tel"  asp-for="Contacto.Telefono" placeholder="Tu teléfono" required>
+
+        <label>Mensaje:</label>
+        <textarea asp-for="Contacto.Mensaje"></textarea>
+
+    </fieldset>
+
+    @Html.ValidationSummary()
+
+
+    <input type="submit" value="Enviar" class="boton boton-verde">
+
+    @if (ViewData["Message"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewData["Message"]");
+            };
+        </script>
+    }
+   
+</form>
