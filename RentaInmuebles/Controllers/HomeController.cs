@@ -44,6 +44,8 @@ namespace RentaInmuebles.Controllers
             if (propiedad == null)
                 return RedirectToAction("Index");
 
+            if (propiedad.Disponible == Dispinible.No)
+                return RedirectToAction("Index");
 
             PropiedadViewModel propiedadViewModel = new()
             {
