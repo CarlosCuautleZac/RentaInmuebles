@@ -5,15 +5,38 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-@foreach (var c in Model)
-{
-    <div class="card">
-    <h1>@c.Nombre</h1>
 
-    <div class="botones">
-        <a href="~/Administrador/ciudades/Editar/@c.Id" class="btnEditar">Editar</a>
-        <a href="~/Administrador/ciudades/Eliminar/@c.Id" class="btnBorrar">Eliminar</a>
-    </div>
+
+
+<div class="contenedor-anuncios">
+
+
+
+    @foreach (var c in Model)
+    {
+        
+        <div class="anuncio">
+            <a href="~/administrador/ciudades/index">
+
+                <div class="contenido-anuncio">
+                    <img src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-place_90615.png" />
+                    <div class="centrar-texto">
+                        <h2>@c.Nombre</h2>
+                    </div>
+                </div>
+
+            </a>
+
+            <div class="botones">
+                <a href="~/Administrador/ciudades/Editar/@c.Id" class="btnEditar">Editar</a>
+                <a href="~/Administrador/ciudades/Eliminar/@c.Id" class="btnBorrar">Eliminar</a>
+            </div>
+        </div>
+
+    }
+
+
+ 
+
 </div>
 
-}
