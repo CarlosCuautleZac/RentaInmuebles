@@ -1,13 +1,22 @@
-﻿@model IEnumerable<RentaInmuebles.Models.Propiedad>
+﻿@model RentaInmuebles.Models.ViewModels.VerPropiedadesViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     ViewData["Title"] = "Propiedades";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <h2 class="fw-300 centrar-texto">Casas en renta</h2>
+
+<form method="post" action="~/Propiedades">
+        <select onchange="this.form.submit()" asp-for="IdCiudad" asp-items="@(new SelectList(Model.Ciudades,"Id","Nombre"))">
+            <option selected="selected" value="">Elige tu ciudad</option>
+        </select>
+ </form>
+
         <div class="contenedor-anuncios">
-            @foreach (var p in Model)
+            @foreach (var p in Model.Propiedades)
             {
                 <div class="anuncio">
                 <img src="~/img/@(p.Id).jpg" alt="anuncio casa en el Lago">

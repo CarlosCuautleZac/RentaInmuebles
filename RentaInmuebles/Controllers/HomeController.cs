@@ -29,13 +29,50 @@ namespace RentaInmuebles.Controllers
         [Route("/Propiedades")]
         public IActionResult Propiedades()
         {
-            var propiedades = context.Propiedad.Where(x => x.Disponible == Dispinible.Si).OrderByDescending(x => x.Precio);
+            var propiedades = context.Propiedad.Where(x => x.Disponible == Dispinible.Si).OrderByDescending(x => x.Precio).ToList();
+            var ciudades = context.Ciudad.OrderBy(x => x.Nombre).ToList();
 
             if (propiedades == null)
                 return RedirectToAction("Index");
 
-            return View(propiedades);
+            VerPropiedadesViewModel vm = new()
+            {
+                Ciudades = ciudades,
+                Propiedades = propiedades,
+                IdCiudad = 0
+            };
+
+            
+
+            return View(vm);
         }
+
+        [Route("/Propiedades")]
+        [HttpPost]
+        public IActionResult Propiedades(VerPropiedadesViewModel vm)
+        {
+            //var propiedades = context.Propiedad.Where(x => x.Disponible == Dispinible.Si).OrderByDescending(x => x.Precio);
+
+            //if (propiedades == null)
+            //    return RedirectToAction("Index");
+
+            //return View(propiedades);
+
+
+            if (vm.IdCiudad == 0)//No eligieron categoria, selecciono todo
+            {
+                vm.Propiedades = context.Propiedad.Where(x => x.Disponible == Dispinible.Si).OrderByDescending(x => x.Precio).ToList();
+            }
+            else
+            {
+                vm.Propiedades = context.Propiedad.Where(x => x.Idciudad == vm.IdCiudad&&x.Disponible==Dispinible.Si).Include(x => x.IdciudadNavigation).OrderBy(x => x.Nombre).ToList();
+            }
+
+            vm.Ciudades = context.Ciudad.OrderBy(x => x.Nombre).ToList();
+
+            return View(vm);
+        }
+
 
         [Route("/{id}")]
         public IActionResult VerPropiedad(string id)
