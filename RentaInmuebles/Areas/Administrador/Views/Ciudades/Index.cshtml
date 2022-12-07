@@ -1,0 +1,19 @@
+﻿@model IEnumerable<RentaInmuebles.Models.Ciudad>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@foreach (var c in Model)
+{
+    <div class="card">
+    <h1>@c.Nombre</h1>
+
+    <div class="botones">
+        <a href="~/Administrador/ciudades/Editar/@c.Id" class="btnEditar">Editar</a>
+        <a href="~/Administrador/ciudades/Eliminar/@c.Id" class="btnBorrar">Eliminar</a>
+    </div>
+</div>
+
+}

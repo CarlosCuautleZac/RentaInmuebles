@@ -4,7 +4,7 @@ using RentaInmuebles.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<sistem21_inmueblesContext>(optionsBuilder=>
-    optionsBuilder.UseMySql("server=sistemas19.com;database=sistem21_inmuebles;user=sistem21_carlos;password=sistemas19_", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.5.17-mariadb")) 
+    optionsBuilder.UseMySql("server=sistemas19.com;database=sistem21_inmbuebles;user=sistem21_carlos;password=sistemas19_", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.5.17-mariadb")) 
 
     );
 

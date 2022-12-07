@@ -17,18 +17,15 @@
     <header class="@(ViewBag.Inicio==true?"site-header inicio":"site-header")">
         <div class="contenedor contenido-header">
             <div class="barra">
-                <a href="~/">
+                <a href="~/administrador">
                     <img src="~/img/logo.svg" alt="logotipo de bienes raices">
                 </a>
                 <nav class="navegacion">
-                    <a href="nosotros.html">Nosotros</a>
-                    @*<a href="anuncios.html">Anuncios</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="contacto.html">Contacto</a>*@
                 </nav>
             </div>
             @if (ViewBag.Inicio != null)
             {
+                 <h1>Renta de casas exclusivas de lujo</h1>
                  <h1>Renta de casas exclusivas de lujo</h1>
             }
         </div>
@@ -41,12 +38,6 @@
     </main>
     <footer class="site-footer seccion">
         <div class="contenedor contenedor-footer">
-            <nav class="navegacion">
-                <a href="nosotros.html">Nosotros</a>
-                <a href="anuncios.html">Anuncios</a>
-                <a href="blog.html">Blog</a>
-                <a href="contacto.html">Contacto</a>
-            </nav>
             <p class="copyright">Todos los derechos reservados 2022 &copy; </p>
         </div>
     </footer>

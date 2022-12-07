@@ -15,6 +15,8 @@ namespace RentaInmuebles.Controllers
             this.context = context;
         }
 
+        [Route("/")]
+        [Route("/Inicio")]
         public IActionResult Index()
         {
             ViewBag.Inicio = true;
@@ -24,7 +26,7 @@ namespace RentaInmuebles.Controllers
             return View(propiedades);
         }
 
-
+        [Route("/Propiedades")]
         public IActionResult Propiedades()
         {
             var propiedades = context.Propiedad.Where(x => x.Disponible == Dispinible.Si).OrderByDescending(x => x.Precio);
@@ -57,9 +59,9 @@ namespace RentaInmuebles.Controllers
             return View(propiedadViewModel);
         }
 
-
+        [Route("/{id}")]
         [HttpPost]
-        public IActionResult VerPropiedad( PropiedadViewModel propiedadViewModel)
+        public IActionResult VerPropiedad(PropiedadViewModel propiedadViewModel)
         {
 
             var propiedad = context.Propiedad.Include(x => x.IdciudadNavigation).
@@ -85,7 +87,7 @@ namespace RentaInmuebles.Controllers
             if (ModelState.IsValid)
             {
                 //Falta validar
-                string mensaje = EnviarCorreo(propiedadViewModel.Contacto);
+                string mensaje = EnviarCorreo(propiedadViewModel.Contacto, propiedadViewModel.Propiedad);
                 ViewBag.Message = mensaje;
                 propiedadViewModel.Contacto = new();
                 return View(propiedadViewModel);
@@ -98,7 +100,7 @@ namespace RentaInmuebles.Controllers
 
 
 
-        private string EnviarCorreo(Contacto c)
+        private string EnviarCorreo(Contacto c, Propiedad p)
         {
             logic objLogic = new logic();
 
@@ -110,6 +112,7 @@ namespace RentaInmuebles.Controllers
                             
                             <p>Mi e-mail es {contacto} y mi telefono es {c.Telefono}</p>
 
+                            <p>Estoy interesado acerca de la casa {p.Nombre} en {p.Direccion}, {p.IdciudadNavigation.Nombre} {p.IdciudadNavigation.Pais}</p>
                             <p>{c.Mensaje}</p>";
 
 

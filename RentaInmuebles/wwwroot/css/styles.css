@@ -362,3 +362,12 @@ textarea{
     justify-content: space-between;
     align-items: center;
 }
+
+
+.imgcrac{ 
+    max-width: 20%;
+    max-height:20%;
+    align-content:end;
+    align-items:end;
+    
+}

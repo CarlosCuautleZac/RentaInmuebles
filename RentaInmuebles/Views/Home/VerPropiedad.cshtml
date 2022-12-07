@@ -9,8 +9,8 @@
 <h1 class="fw-300 centrar-texto">@Model.Propiedad.Nombre</h1>
 <img src="~/img/@(Model.Propiedad.Id).jpg" alt="imagen anuncio">
 
-<div class="resumen-propiedad">
 
+<div class="resumen-propiedad">
 
 
     <p class="precio">Precio @Model.Propiedad.Precio.ToString("c")</p>
@@ -27,17 +27,27 @@
             <img src="~/img/icono_dormitorio.svg" alt="icono habitaciones">
             <p>@Model.Propiedad.CantCuartos</p>
         </li>
+        
+        
     </ul>
 
 
 </div> <!--resumen propiedad-->
 
+
+
 <p>@Model.Propiedad.Direccion @Model.Propiedad.IdciudadNavigation.Nombre, @Model.Propiedad.IdciudadNavigation.Estado</p>
 
 <p>@Model.Propiedad.Descripcion</p>
 
+<a href="https://api.whatsapp.com/send?phone=+528616151832&text=Me%20podr%C3%ADa%20brindar%20informaci%C3%B3n%20de%20{@Model.Propiedad.Nombre}">
 
-<form class="contacto" action="~/Home/VerPropiedad" method="post">
+    <div class="imgcrac">
+    <img class="imgcrac" src="https://cdn-icons-png.flaticon.com/512/174/174879.png"/>
+</div>
+</a>
+
+<form class="contacto" action="~/@Model.Propiedad.Nombre.Replace(" ","-")" method="post">
 
     <fieldset>
         <legend>Quiero ser contactado</legend>

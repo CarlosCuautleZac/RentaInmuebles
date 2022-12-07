@@ -15,4 +15,8 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Administrador\Models\" />
+  </ItemGroup>
+
 </Project>
