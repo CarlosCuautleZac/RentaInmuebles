@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 public enum Dispinible
 {
@@ -13,6 +14,9 @@ namespace RentaInmuebles.Models
         public int Id { get; set; }
         public string Nombre { get; set; } = null!;
         public string Direccion { get; set; } = null!;
+
+        [RegularExpression(@"^\d+(\.\d{1,2})?$")]
+        [Range(0, 9999999999.99)]
         public decimal Precio { get; set; }
         public int? CantBaños { get; set; }
         public int? CantCochera { get; set; }

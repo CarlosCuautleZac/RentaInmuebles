@@ -102,6 +102,8 @@ namespace RentaInmuebles.Areas.Administrador.Controllers
             if(context.Propiedad.Any(x=>x.Direccion==propiedad.Direccion && x.Idciudad == propiedad.Idciudad))
                 ModelState.AddModelError("", "Ya existe una propiedad con esa dirección.");
 
+            if(propiedad.Precio>)
+
             if (ModelState.IsValid)
             {
                 Propiedad p = new();
@@ -219,6 +221,42 @@ namespace RentaInmuebles.Areas.Administrador.Controllers
                 vm.Ciudades = context.Ciudad.OrderBy(x => x.Nombre);
                 return View(vm);
             }
+        }
+
+
+        public IActionResult Eliminar(int id)
+        {
+            var propiedad = context.Propiedad.Find(id);
+
+            if (propiedad == null)
+                return RedirectToAction("Index");
+
+
+
+            return View(propiedad);
+        }
+
+        [HttpPost]
+        public IActionResult Eliminar(Propiedad p)
+        {
+            var propiedad = context.Propiedad.FirstOrDefault(x => x.Id == p.Id);
+
+            if (propiedad == null)
+                ModelState.AddModelError("", "La propiedad no se encuentra o ya ha sido eliminada");
+            else
+            {
+                context.Remove(propiedad);
+                string nuevaruta = env.WebRootPath + $"/img/{p.Id}.jpg";
+
+                if (context.SaveChanges() > 0)
+                {
+                    System.IO.File.Delete(nuevaruta);
+                }
+
+                return RedirectToAction("Index");
+            }
+            
+            return View(propiedad);
         }
 
     }

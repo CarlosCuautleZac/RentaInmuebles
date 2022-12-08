@@ -121,7 +121,7 @@ namespace RentaInmuebles.Areas.Administrador.Controllers
 
                 if (context.Propiedad.Any(x => x.Idciudad == ciudad.Id))
                 {
-                    ModelState.AddModelError("", "No se puede eliminar una ciudad que tenga productos");
+                    ModelState.AddModelError("", "No se puede eliminar una ciudad que tenga propiedades");
                 }
 
                 if (ModelState.IsValid)
