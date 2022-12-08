@@ -1,0 +1,27 @@
+﻿@model RentaInmuebles.Models.Ciudad
+
+@{
+    ViewData["Title"] = "Editar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<form method="post" action="~/administrador/ciudades/editar">
+    <div>
+        <input type="hidden" asp-for="Id" />
+
+        <h1>Editar Ciudad</h1>
+
+        <label>Nombre:</label>
+        <input asp-for="Nombre" required type="text" />
+        <label>Estado:</label>
+        <input asp-for="Estado" required type="text" />
+        <label>Pais:</label>
+        <input asp-for="Pais" required type="text" />
+
+        @Html.ValidationSummary()
+
+        <div>
+            <input type="submit" value="Editar Ciudad" />
+        </div>
+    </div>
+</form>

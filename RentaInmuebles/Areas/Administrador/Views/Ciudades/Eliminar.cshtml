@@ -1,0 +1,27 @@
+﻿@model RentaInmuebles.Models.Ciudad
+
+@{
+    ViewData["Title"] = "Eliminar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<form method="post" action="~/Administrador/ciudades/Eliminar">
+    <div>
+        <h1>Eliminar Ciudad</h1>
+
+        <input type="hidden" id="id" asp-for="Id" />
+        <input type="hidden" id="id" asp-for="Estado" />
+        <input type="hidden" id="id" asp-for="Nombre" />
+        <input type="hidden" id="id" asp-for="Pais" />
+
+        <p>¿Está seguro de eliminar la Ciudad "@Model.Nombre"?</p>
+
+        <div class="botones">
+            <p id="error">
+                @Html.ValidationSummary()
+            </p>
+            <input type="submit" value="Si" id="btnSi" />
+            <a href="~/administrador/ciudades/index"><input type="button" value="No" id="btnNo" formnovalidate="formnovalidate" /></a>
+        </div>
+    </div>
+</form>

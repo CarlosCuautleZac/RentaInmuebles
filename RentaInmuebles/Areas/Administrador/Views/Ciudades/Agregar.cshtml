@@ -1,0 +1,25 @@
+﻿@model RentaInmuebles.Models.Ciudad
+
+@{
+    ViewData["Title"] = "Agregar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<form method="post" action="~/Administrador/Ciudades/Agregar">
+    <div>
+        <h1>Agregar Ciudad</h1>
+
+        <label>Nombre:</label>
+        <input asp-for="Nombre" required type="text" />
+        <label>Estado:</label>
+        <input asp-for="Estado" required type="text" />
+        <label>Pais:</label>
+        <input asp-for="Pais"  required type="text" />
+        
+        @Html.ValidationSummary()
+
+        <div>
+            <input type="submit" value="Agregar Ciudad" />
+        </div>
+    </div>
+</form>

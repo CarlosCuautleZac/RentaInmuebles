@@ -28,6 +28,9 @@ namespace RentaInmuebles.Areas.Administrador.Controllers
         [HttpPost]
         public IActionResult Agregar(Ciudad ciudad)
         {
+            if (context.Ciudad.Any(x => x.Nombre == ciudad.Nombre && x.Estado == ciudad.Estado && x.Pais == ciudad.Pais))
+                ModelState.AddModelError("", "Ya existe esa ciudad");
+
             if (string.IsNullOrWhiteSpace(ciudad.Nombre))
                 ModelState.AddModelError("", "El campo nombre no debe ir vacío. Complete el campo para agregar una ciudad");
 
@@ -68,9 +71,9 @@ namespace RentaInmuebles.Areas.Administrador.Controllers
             if (string.IsNullOrWhiteSpace(c.Pais))
                 ModelState.AddModelError("", "El país no debe ir vacío. Complete el campo para agregar una ciudad");
 
-            if (context.Ciudad.Any(x => x.Nombre == c.Nombre && x.Id != c.Id))
+            if (context.Ciudad.Any(x => x.Nombre == c.Nombre && x.Id != c.Id && x.Estado == c.Estado && x.Pais == c.Pais))
             {
-                ModelState.AddModelError("", "Ya existe una ciudad con ese nombre");
+                ModelState.AddModelError("", "Ya existe esa ciudad. Escriba alguna otra para continuar");
             }
 
             if (ModelState.IsValid)
