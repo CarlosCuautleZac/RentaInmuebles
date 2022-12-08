@@ -309,7 +309,7 @@ line-height: 1.4;
     font-weight: 900;
     font-size: 2rem;
     margin: 0;
-    padding: 1rem 0 3rem 0; ;
+    padding: 1rem 0 3rem 0; 
 }
 
 /*anuncio*/
@@ -370,4 +370,10 @@ textarea{
     align-content:end;
     align-items:end;
     
+}
+
+.imgcrac2 {
+    object-fit:cover;
+    align-content: end;
+    align-items: end;
 }

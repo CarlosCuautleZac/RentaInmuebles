@@ -16,13 +16,30 @@
     @foreach (var p in Model.Propiedades)
     {
         <div class="anuncio">
-            <img src="~/img/@(p.Id).jpg" alt="anuncio casa en el Lago">
+
+            <div class="imgcrac2">
+                <img src="~/img/@(p.Id).jpg" alt="anuncio casa en el Lago">
+            </div>
             <div class="contenido-anuncio">
                 <h3>@p.Nombre</h3>
                 <p>
-                    @(p.Descripcion))
-                </p>
+                    @if (p.Descripcion != null)
+                    {
+                        @if (p.Descripcion.Length > 80)
+                        {
+                            @(p.Descripcion.Substring(0, 80))
+                        <p>...</p>
+                            ;
+                        }
+                        else
+                        {
+                            @(p.Descripcion)
+                        }
 
+                    }
+
+                    
+                </p>
                 <p class="precio">@p.Precio.ToString("c")/mes</p>
 
                 <ul class="iconos-caracs">
@@ -39,6 +56,16 @@
                         <p>@p.CantCuartos</p>
                     </li>
                 </ul>
+
+                <div class="imgcrac">
+                    <a href="~/Administrador/Propiedades/Editar/@p.Id">
+                        <img src="~/img/Lapiz.png">
+                    </a>
+
+                    <a>
+                        <img src="~/img/Eliminar.png">
+                    </a>
+                </div>
             </div>
         </div>
     }

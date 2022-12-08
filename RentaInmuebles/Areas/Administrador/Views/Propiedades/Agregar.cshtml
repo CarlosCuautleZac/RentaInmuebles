@@ -1,0 +1,48 @@
+﻿@model RentaInmuebles.Areas.Administrador.Models.ViewModels.AgregarPropiedadViewModel
+
+@{
+    ViewData["Title"] = "Agregar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<form action="~/Administrador/Propiedades/Agregar" method="post" enctype="multipart/form-data">
+    <div>
+        <h1>Agregar Propiedad</h1><br>
+        <label>Nombre</label><br />
+        <input asp-for="Propiedad.Nombre" required type="text" /><br />
+
+        <label>Ciudad:</label>
+        <select id="cmbCategoria" required="required" asp-for="Propiedad.Idciudad"
+                asp-items="@(new SelectList(Model.Ciudades,"Id","Nombre"))">
+            <option selected="selected" value="">-- Seleccionar ciudad --</option>
+
+        </select>
+
+        <label>Imagen:</label>
+        <input asp-for="Imagen" type="file" id="fileUpload1" accept="image/jpg" />
+
+        <label>Direccion</label><br />
+        <input asp-for="Propiedad.Direccion" type="text" /><br />
+        <label>Precio por mes</label><br />
+        <input asp-for="Propiedad.Precio" type="number" /><br />
+        <label>Cantidad de baños</label><br />
+        <input asp-for="Propiedad.CantBaños" type="number" /><br />
+        <label>Cantidad de Cocheras</label><br />
+        <input asp-for="Propiedad.CantCochera" type="number" /><br />
+        <label>Cantidad de Cuartos</label><br />
+        <input asp-for="Propiedad.CantCuartos" type="number" /><br />
+        <label>Descripcion</label><br />
+        <textarea asp-for="Propiedad.Descripcion"></textarea><br />
+        <label>Disponibilidad</label>
+
+        <input asp-for="Propiedad.Disponible" type="radio" value="@Dispinible.No" /> No
+        <input asp-for="Propiedad.Disponible" type="radio" value="@Dispinible.Si" /> Si
+
+
+        @Html.ValidationSummary()
+
+        <div>
+            <input type="submit" value="Agregar Propiedad" />
+        </div>
+    </div>
+</form>
