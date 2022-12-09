@@ -189,6 +189,11 @@ namespace RentaInmuebles.Controllers
             return RedirectToAction("Index");
         }
 
+        [Route("/Nosotros")]
+        public IActionResult Nosotros()
+        {
+            return View();
+        }
 
         private string EnviarCorreo(Contacto c, Propiedad p)
         {
