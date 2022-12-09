@@ -8,38 +8,51 @@
 
 
 
-<div class="contenedor-anuncios">
+<div class="contenedor-admin">
 
-    <a href="~/Administrador/ciudades/Agregar">
-        <img src="~/img/addlocation.png"/>
-    </a>
+
+    <div class="edicion">
+        <a href="~/Administrador/ciudades/Agregar" class="no-estilo-enlace">
+
+            <div class="contenido-anuncio imagen-a">
+                <img src="~/img/addlocation.png" />
+                <div class="centrar-texto">
+                    <h2 class="no-estilo-enlace">Añadir Ciudad</h2>
+                </div>
+            </div>
+
+        </a>
+
+
+    </div>
+
 
     @foreach (var c in Model)
     {
-        
-        
-        <div class="anuncio">
-            <a href="~/administrador/ciudades/index">
 
-                <div class="contenido-anuncio">
+
+        <div class="edicion">
+            <a href="~/administrador/ciudades/index" class="no-estilo-enlace">
+
+                <div class="contenido-anuncio imagen-a">
                     <img src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-place_90615.png" />
                     <div class="centrar-texto">
-                        <h2>@c.Nombre</h2>
+                        <h2 class="no-estilo-enlace">@c.Nombre</h2>
                     </div>
                 </div>
 
             </a>
 
             <div class="botones">
-                <a href="~/Administrador/ciudades/Editar/@c.Id" class="btnEditar">Editar</a>
-                <a href="~/Administrador/ciudades/Eliminar/@c.Id" class="btnBorrar">Eliminar</a>
+                <a class="no-estilo-enlace boton boton-amarillo" href="~/Administrador/ciudades/Editar/@c.Id">Editar</a>
+                <a class="no-estilo-enlace boton boton-rojo" href="~/Administrador/ciudades/Eliminar/@c.Id">Eliminar</a>
             </div>
         </div>
 
     }
 
 
- 
+
 
 </div>
 

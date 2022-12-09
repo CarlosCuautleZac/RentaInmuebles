@@ -5,12 +5,6 @@
 }
 
 
-
-@{
-    ViewData["Title"] = "Agregar";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-}
-
 <form action="~/Administrador/Propiedades/Editar" method="post" enctype="multipart/form-data">
     <div>
         <h1>Agregar Propiedad</h1><br>
@@ -50,6 +44,8 @@
 
         <div>
             <input type="submit" value="Editar Propiedad" />
+            <a href="~/Administrador/Propiedades" id="btnNo" formnovalidate="formnovalidate" class="boton boton-rojo"> Cancelar</a>
+
         </div>
     </div>
 </form>

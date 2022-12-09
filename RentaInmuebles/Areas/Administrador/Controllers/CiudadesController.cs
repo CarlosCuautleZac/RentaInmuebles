@@ -42,6 +42,15 @@ namespace RentaInmuebles.Areas.Administrador.Controllers
             if (string.IsNullOrWhiteSpace(ciudad.Pais))
                 ModelState.AddModelError("", "El país no debe ir vacío. Complete el campo para agregar una ciudad");
 
+            if(ciudad.Nombre.Length>45)
+                ModelState.AddModelError("", "El campo nombre no debe contener más de 45 caracteres");
+
+            if (ciudad.Estado.Length > 45)
+                ModelState.AddModelError("", "El campo estado no debe contener más de 45 caracteres");
+
+            if (ciudad.Pais.Length > 45)
+                ModelState.AddModelError("", "El campo país no debe contener más de 45 caracteres");
+
             if (ModelState.IsValid)
             {
                 context.Add(ciudad);

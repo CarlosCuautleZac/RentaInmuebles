@@ -14,10 +14,22 @@
 
 <div class="contenedor-anuncios">
 
-    <a href="~/Administrador/Propiedades/Agregar">
-        <img src="~/img/addhouse.png"/>
-    </a>
-        
+
+
+    <div class="edicion">
+        <a href="~/Administrador/Propiedades/Agregar" class="no-estilo-enlace">
+
+            <div class="contenido-anuncio imagen-a">
+                <img src="~/img/addhouse.png" />
+                <div class="centrar-texto">
+                    <h2 class="no-estilo-enlace">Añadir Propiedad</h2>
+                </div>
+            </div>
+
+        </a>
+
+
+    </div>
 
     @foreach (var p in Model.Propiedades)
     {
@@ -44,7 +56,7 @@
 
                     }
 
-                    
+
                 </p>
                 <p class="precio">@p.Precio.ToString("c")/mes</p>
 
@@ -63,13 +75,13 @@
                     </li>
                 </ul>
 
-                <div class="imgcrac">
+                <div class="imgcrac3">
                     <a href="~/Administrador/Propiedades/Editar/@p.Id">
-                        <img src="~/img/Lapiz.png">
+                        <img class="boton boton-amarillo" src="~/img/Lapiz.png">
                     </a>
 
                     <a href="~/Administrador/Propiedades/Eliminar/@p.Id">
-                        <img src="~/img/Eliminar.png">
+                        <img class="boton boton-rojo" src="~/img/Eliminar.png">
                     </a>
                 </div>
             </div>

@@ -16,12 +16,15 @@
 
         <p>¿Está seguro de eliminar la Ciudad "@Model.Nombre"?</p>
 
-        <div class="botones">
+        <div>
             <p id="error">
                 @Html.ValidationSummary()
             </p>
-            <input type="submit" value="Si" id="btnSi" />
-            <a href="~/administrador/ciudades/index"><input type="button" value="No" id="btnNo" formnovalidate="formnovalidate" /></a>
+            <div>
+                <input type="submit" value="Si" id="btnSi" />
+                <a href="~/administrador/ciudades/index" class="boton boton-rojo no-estilo-enlace" id="btnNo" formnovalidate="formnovalidate"> No</a>
+            </div>
+
         </div>
     </div>
 </form>

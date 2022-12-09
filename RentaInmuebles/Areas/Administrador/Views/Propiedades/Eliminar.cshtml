@@ -7,18 +7,18 @@
 
 <form method="post" action="~/Administrador/propiedades/Eliminar">
     <div>
-        <h1>Eliminar Ciudad</h1>
+        <h1>Eliminar Propiedad</h1>
 
         <input type="hidden" id="id" asp-for="Id" />
-       
-        <p>¿Está seguro de eliminar la Ciudad "@Model.Nombre"?</p>
+
+        <p>¿Está seguro de eliminar la Propiedad "@Model.Nombre"?</p>
 
         <div class="botones">
             <p id="error">
                 @Html.ValidationSummary()
             </p>
             <input type="submit" value="Si" id="btnSi" />
-            <a href="~/Administrador/Propiedades"><input type="button" value="No" id="btnNo" formnovalidate="formnovalidate" /></a>
+            <a href="~/Administrador/Propiedades" id="btnNo" formnovalidate="formnovalidate" class="boton boton-rojo"> No</a>
         </div>
     </div>
 </form>

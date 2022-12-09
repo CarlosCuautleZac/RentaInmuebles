@@ -83,8 +83,21 @@ namespace RentaInmuebles.Areas.Administrador.Controllers
             var propiedad = vm.Propiedad;
             var imagen = vm.Imagen;
 
+
+
             if (propiedad == null)
                 ModelState.AddModelError("", "Por favor escriba los datos correspondientes para continuar");
+
+            if (propiedad.Nombre != null)
+                if (propiedad.Nombre.Length > 100)
+                ModelState.AddModelError("", "El campo nombre no debe contener más de 100 caracteres");
+
+            if (propiedad.Direccion.Length > 45)
+                ModelState.AddModelError("", "El campo dirección no debe contener más de 100 caracteres");
+
+            if (propiedad.Descripcion != null)
+                if (propiedad.Descripcion.Length > 65000)
+                    ModelState.AddModelError("", "El campo descripción no debe contener más de 65,000 caracteres");
 
             if (string.IsNullOrWhiteSpace(propiedad.Nombre))
                 ModelState.AddModelError("", "Por favor escriba el nombre para agregar una propiedad");
@@ -95,13 +108,13 @@ namespace RentaInmuebles.Areas.Administrador.Controllers
             if (propiedad.Precio <= 0)
                 ModelState.AddModelError("", "Monto invalido. Para agregar una propiedad debe escribir una monto mayor a $0.00");
 
-            if(propiedad.CantCuartos<=0)
+            if (propiedad.CantCuartos <= 0)
                 ModelState.AddModelError("", "NÚmero de cuartos invalido. Para agregar una propiedad debe escribir un número de cuartos mayor a 0");
 
-            if(propiedad.Idciudad==0)
+            if (propiedad.Idciudad == 0)
                 ModelState.AddModelError("", "Ciudad invalida. Debe seleccionar la ciudad de la propiedad");
 
-            if(context.Propiedad.Any(x=>x.Direccion==propiedad.Direccion && x.Idciudad == propiedad.Idciudad))
+            if (context.Propiedad.Any(x => x.Direccion == propiedad.Direccion && x.Idciudad == propiedad.Idciudad))
                 ModelState.AddModelError("", "Ya existe una propiedad con esa dirección.");
 
             if (context.Propiedad.Any(x => x.Nombre == propiedad.Nombre))
@@ -112,7 +125,7 @@ namespace RentaInmuebles.Areas.Administrador.Controllers
                 Propiedad p = new();
                 p = propiedad;
                 context.Add(p);
-               int cambios =  context.SaveChanges();
+                int cambios = context.SaveChanges();
 
                 if (cambios > 0)
                 {
@@ -139,7 +152,7 @@ namespace RentaInmuebles.Areas.Administrador.Controllers
                 vm.Ciudades = context.Ciudad.OrderBy(x => x.Nombre).ToList();
                 return View(vm);
             }
-            
+
         }
 
 
@@ -153,8 +166,8 @@ namespace RentaInmuebles.Areas.Administrador.Controllers
             AgregarPropiedadViewModel vm = new()
             {
                 Ciudades = context.Ciudad.OrderBy(x => x.Nombre).ToList(),
-                Propiedad=p
-               
+                Propiedad = p
+
             };
 
             return View(vm);
@@ -171,7 +184,7 @@ namespace RentaInmuebles.Areas.Administrador.Controllers
 
             var p = context.Propiedad.Find(propiedad.Id);
 
-            if(p == null)
+            if (p == null)
                 return RedirectToAction("Index");
 
             if (propiedad == null)
@@ -192,12 +205,12 @@ namespace RentaInmuebles.Areas.Administrador.Controllers
             if (propiedad.Idciudad == 0)
                 ModelState.AddModelError("", "Ciudad invalida. Debe seleccionar la ciudad de la propiedad");
 
-            if (context.Propiedad.Any(x => x.Direccion == propiedad.Direccion && x.Idciudad == propiedad.Idciudad &&x.Id !=p.Id))
+            if (context.Propiedad.Any(x => x.Direccion == propiedad.Direccion && x.Idciudad == propiedad.Idciudad && x.Id != p.Id))
                 ModelState.AddModelError("", "Ya existe una propiedad con esa dirección.");
 
             if (ModelState.IsValid)
             {
-                
+
                 p.Nombre = propiedad.Nombre;
                 p.Direccion = propiedad.Direccion;
                 p.Precio = propiedad.Precio;
@@ -258,7 +271,7 @@ namespace RentaInmuebles.Areas.Administrador.Controllers
 
                 return RedirectToAction("Index");
             }
-            
+
             return View(propiedad);
         }
 
