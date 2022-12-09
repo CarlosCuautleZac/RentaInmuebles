@@ -139,6 +139,7 @@ namespace RentaInmuebles.Controllers
 
         public IActionResult IniciarSesion()
         {
+            ViewBag.IniciarSesion = true;
             return View();
         }
 

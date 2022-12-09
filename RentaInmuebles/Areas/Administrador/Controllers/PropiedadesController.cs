@@ -104,7 +104,8 @@ namespace RentaInmuebles.Areas.Administrador.Controllers
             if(context.Propiedad.Any(x=>x.Direccion==propiedad.Direccion && x.Idciudad == propiedad.Idciudad))
                 ModelState.AddModelError("", "Ya existe una propiedad con esa dirección.");
 
-            
+            if (context.Propiedad.Any(x => x.Nombre == propiedad.Nombre))
+                ModelState.AddModelError("", "Ya existe una propiedad con ese nombre.");
 
             if (ModelState.IsValid)
             {
