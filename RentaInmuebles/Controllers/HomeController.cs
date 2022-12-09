@@ -136,7 +136,7 @@ namespace RentaInmuebles.Controllers
                 return View(propiedadViewModel);
         }
 
-
+        [Route("/IniciarSesion")]
         public IActionResult IniciarSesion()
         {
             ViewBag.IniciarSesion = true;
