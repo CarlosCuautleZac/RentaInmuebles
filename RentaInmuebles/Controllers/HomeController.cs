@@ -146,7 +146,7 @@ namespace RentaInmuebles.Controllers
         [HttpPost]
         public IActionResult IniciarSesion(Login login)
         {
-            if (login.Username == "admin" && login.Password == "admin")
+            if (login.Username == "admin" && login.Password == "admin123")
             {
                 //crear claims
 
