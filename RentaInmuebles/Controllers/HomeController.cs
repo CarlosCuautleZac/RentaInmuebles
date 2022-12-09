@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RentaInmuebles.Helpers;
 using RentaInmuebles.Models;
 using RentaInmuebles.Models.ViewModels;
+using System.Security.Claims;
 
 namespace RentaInmuebles.Controllers
 {
@@ -134,7 +137,56 @@ namespace RentaInmuebles.Controllers
         }
 
 
+        public IActionResult IniciarSesion()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public IActionResult IniciarSesion(Login login)
+        {
+            if (login.Username == "admin" && login.Password == "admin")
+            {
+                //crear claims
+
+
+                var listaclaims = new List<Claim>()
+                {
+                    new Claim(ClaimTypes.Role,"Administrador")
+
+                };
+                //crear identidad
+                var identidad = new ClaimsIdentity(listaclaims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+
+                //autenticar
+
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(identidad), new AuthenticationProperties()
+                    {
+                        ExpiresUtc = DateTime.Now.AddDays(1), // Cuanto tiempo estamos con la sesion activa
+                        IsPersistent = true
+                    });
+
+
+                return RedirectToAction("Index", "Home", new { Area = "Administrador" });
+            }
+            else
+            {
+                ModelState.AddModelError("", "El nombre de usuario o la contraseña no son correctos");
+
+                return View(login);
+            }
+            ;
+        }
+
+
+
+        public IActionResult CerrarSesion()
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToAction("Index");
+        }
 
 
         private string EnviarCorreo(Contacto c, Propiedad p)

@@ -25,17 +25,35 @@
                     @*<a href="anuncios.html">Anuncios</a>
                     <a href="blog.html">Blog</a>
                     <a href="contacto.html">Contacto</a>*@
+
+                    @if (User.Identity != null)
+                        @if (User.Identity.IsAuthenticated == false)
+                        {
+                            <a href="~/home/iniciarsesion">Iniciar Sesión</a>
+                        }
+                        else
+                        {
+                            <a href="~/Administrador">Administrar</a>
+                            <a href="~/home/cerrarsesion">Cerrar Sesión</a>
+                        }
                 </nav>
             </div>
             @if (ViewBag.Inicio != null)
             {
-                 <h1>Renta de casas exclusivas de lujo</h1>
+                <h1>Renta de casas exclusivas de lujo</h1>
             }
+
+
+
+
         </div>
+
+
+
         <!--contenedor-->
     </header>
 
-    
+
     <main class="seccion contenedor">
         @RenderBody()
     </main>

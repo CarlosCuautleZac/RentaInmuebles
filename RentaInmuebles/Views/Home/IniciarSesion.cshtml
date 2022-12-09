@@ -1,0 +1,32 @@
+﻿@model RentaInmuebles.Models.Login
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "IniciarSesion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Inicio de sesion</title>
+</head>
+<body>
+
+    <h1>Iniciar Sesión</h1>
+
+    <form method="post" action="~/home/iniciarsesion">
+        <label >Usuario:</label>
+        <input asp-for="Username" type="text">
+        <label>Contraseña:</label>
+        <input asp-for="Password" type="password">
+
+        @Html.ValidationSummary()
+
+        <input type="submit" value="Ingresar">
+    </form>
+</body>
+</html>

@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RentaInmuebles.Models;
 
 namespace RentaInmuebles.Areas.Administrador.Controllers
 {
+    [Authorize]
     [Area("Administrador")]
     public class CiudadesController : Controller
     {

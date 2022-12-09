@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RentaInmuebles.Areas.Administrador.Models.ViewModels;
 using RentaInmuebles.Models;
@@ -6,6 +7,7 @@ using RentaInmuebles.Models.ViewModels;
 
 namespace RentaInmuebles.Areas.Administrador.Controllers
 {
+    [Authorize]
     [Area("Administrador")]
     public class PropiedadesController : Controller
     {
@@ -102,7 +104,7 @@ namespace RentaInmuebles.Areas.Administrador.Controllers
             if(context.Propiedad.Any(x=>x.Direccion==propiedad.Direccion && x.Idciudad == propiedad.Idciudad))
                 ModelState.AddModelError("", "Ya existe una propiedad con esa dirección.");
 
-            if(propiedad.Precio>)
+            
 
             if (ModelState.IsValid)
             {
